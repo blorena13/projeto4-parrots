@@ -1,0 +1,31 @@
+body {
+    background-color:  #eef9bf;
+    
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+
+    color: #75B79E;
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 56px;
+
+}
+
+.tabuleiro {
+    display: flex;
+    
+
+}
+
+.cards {
+    background-color: #A7E9AF;
+    width: 117px;
+    height: 146px;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+}
