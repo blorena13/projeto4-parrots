@@ -1,5 +1,8 @@
 body {
     background-color:  #eef9bf;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     
 }
 
@@ -16,9 +19,17 @@ header {
 
 }
 
-.tabuleiro {
-    display: flex;
+main {
     
+    margin-left: 122px;
+    margin-right: 122px;
+    margin-top: 47px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 34px;
 
 }
 
@@ -28,4 +39,35 @@ header {
     height: 146px;
     border: 1px solid #99CEA8;
     border-radius: 5px;
+    position: relative;
+    
+    transition: all 400ms ease;
+    transform-style: preserve-3d;
 }
+   
+
+
+.face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 5px;
+}
+
+.back-face {
+    background-color: yellow;
+    backface-visibility: hidden;
+
+}
+
+.front-face {
+    background-color: purple;
+    transform: rotateY(180deg);
+}
+
+.cards:hover {
+    transform: rotateY(180deg);
+}
+
+
+
