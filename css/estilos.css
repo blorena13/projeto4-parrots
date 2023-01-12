@@ -3,6 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: "imagem.gif";
     
 }
 
@@ -34,6 +35,7 @@ main {
 }
 
 .cards {
+    
     background-color: #A7E9AF;
     width: 117px;
     height: 146px;
@@ -52,16 +54,26 @@ main {
     height: 100%;
     position: absolute;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    
 }
 
 .back-face {
-    background-color: yellow;
+    
     backface-visibility: hidden;
 
 }
 
 .front-face {
-    background-color: purple;
+    backface-visibility: hidden;
     transform: rotateY(180deg);
 }
 
