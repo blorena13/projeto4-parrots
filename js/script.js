@@ -9,23 +9,29 @@ function QuantidadeDeCartas(){
     }
     return numero;
 
-} // ta dando certo! só abre se for número par
-
+} 
 
 
 const tabuleiro = document.querySelector('.tabuleiro'); // busca a div mae
 
 const passaros = [  // cada gif
-    'parrot1',
-    'parrot2',
-    'parrot3',
-    'parrot4',
-    'parrot5',
-    'parrot6',
-    'parrot7',
+    'imagens/parrot1.gif',
+    'imagens/parrot1.gif',
+    'imagens/parrot2.gif',
+    'imagens/parrot2.gif',
+    'imagens/parrot3.gif',
+    'imagens/parrot3.gif',
+    'imagens/parrot4.gif',
+    'imagens/parrot4.gif',
+    'imagens/parrot5.gif',
+    'imagens/parrot5.gif',
+    'imagens/parrot6.gif',
+    'imagens/parrot6.gif',
+    'imagens/parrot7.gif',
+    'imagens/parrot7.gif',
 ];
 
-let contador = 7;
+// let indice = numero;
 
 function adicionarPassaros(){
     const novoPassaro = document.querySelector('cards');
@@ -34,55 +40,86 @@ function adicionarPassaros(){
     const main = document.querySelector('main');
 
     main.innerHTML = main.innerHTML + ` 
-    <div class="cards">
+    <div data-test="card" class="cards"  onclick="clicarCards(this)">
     <div class="front-face face">
-    <img src= "${novoPassaro.value}.gif"/>
+    <img data-test="face-up-image src= "${novoPassaro.value}"/>
     </div>
 
-    <div class="back-face face">
-    <img src= "imagens/back.png"/>
+    <div class="back-face face" >
+    <img data-test="face-down-image" src= "./imagens/back.png"/>
     </div>`
+
 }
 
-function adicionarPassarosNoDOM(){
+function adicionarPassarosNoDOM(passaro){
 
     const main = document.querySelector('main');
+    
+    passaros.sort(comparador);
 
-    for(let indice = 0; indice < passaros.length; indice++){
+    for(let i = 0; i < pegarNCartas; i++){
         let template = ` 
-        <div class="cards">
-        <div class="front-face face">
-        <img src= "${passaros[indice]}.gif"/>
+        <div data-test="card" class="cards" onclick="clicarCards(this)" >
+        <div class="front-face face" >
+        <img data-test="face-up-image" src= "${passaros[i]}"/>
         </div>
+
     
         <div class="back-face face">
-        <img src= "imagens/back.png"/>
+        <img data-test="face-down-image" src= "./imagens/back.png"/>
+        </div>
         </div>
         `;
         main.innerHTML = main.innerHTML + template;
     }
+
+
+}
+
+function comparador() {
+    return Math.random() - 0.5;  //embaralhar
+
 }
 
 adicionarPassarosNoDOM();
 //criar uma nova carta
 
+function MudarNomeCarta(){
+const carta = document.querySelector('.cards');
+carta.setAttribute('data-passaro', passaro);
+}
 
-// cria várias para começar o jogo
+let firstCard = '';
+let secondCard = '';
+
+function VerificarCartasIguais(){
+
+
+}
+
  
+function clicarCards(cartaClicada) {
+    //revela carta clicada 
+    cartaClicada.className.includes('reveal-card');
 
+    if(firstCard === ''){
+        cartaClicada.classList.add('reveal-card');
+        firstCard =  cartaClicada;
+    } else if (secondCard === '') {
+        cartaClicada.classList.add('reveal-card');
+        secondCard = cartaClicada;
+
+        VerificarCartasIguais();
+
+    }
+
+}
+
+// começo jogo (falta ainda)
 const game = () => { 
 
-    const duplicarPassaros = [ ...passaros, ...passaros];
 
-    const embaralhar = duplicarPassaros.sort();
-
-
-
-
-    duplicarPassaros.forEach((passaro)  => {
-        const cards = adicionarPassaros(passaro);
-        tabuleiro.appendChild(cards);
-    });
+    
 
     
 }

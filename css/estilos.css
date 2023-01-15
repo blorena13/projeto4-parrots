@@ -3,7 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: "imagem.gif";
+    
     
 }
 
@@ -77,9 +77,10 @@ img {
     transform: rotateY(180deg);
 }
 
-.cards:hover {
+.reveal-card {
     transform: rotateY(180deg);
 }
+
 
 
 
