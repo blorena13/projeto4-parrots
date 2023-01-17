@@ -12,7 +12,6 @@ header {
     justify-content: center;
     align-items: center;
     margin-top: 40px;
-
     color: #75B79E;
     font-family: Roboto;
     font-weight: 700;
@@ -81,6 +80,11 @@ img {
     transform: rotateY(180deg);
 }
 
+@media (max-width: 614px) {
 
+header {
+    font-size: 36px;
+    
+   }
 
-
+}

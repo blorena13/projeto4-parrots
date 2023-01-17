@@ -2,6 +2,9 @@ const pegarNCartas = QuantidadeDeCartas();
 
 let numero;
 
+let clique = 0;
+
+
 function QuantidadeDeCartas(){
     let numero = parseInt(prompt ("Com quantas cartas quer jogar?"));
     while(isNaN(numero)|| numero <4 || numero > 14 || (numero % 2) === 1){
@@ -12,60 +15,41 @@ function QuantidadeDeCartas(){
 } 
 
 
+
 const tabuleiro = document.querySelector('.tabuleiro'); // busca a div mae
 
+const passarosPossiveis = [1,1,2,2,3,3,4,4,5,5,6,6,7,7];
+const passaroCard = [];
+
+
 const passaros = [  // cada gif
-    './imagens/parrot1.gif',
-    './imagens/parrot1.gif',
-    './imagens/parrot2.gif',
-    './imagens/parrot2.gif',
-    './imagens/parrot3.gif',
-    './imagens/parrot3.gif',
-    './imagens/parrot4.gif',
-    './imagens/parrot4.gif',
-    './imagens/parrot5.gif',
-    './imagens/parrot5.gif',
-    './imagens/parrot6.gif',
-    './imagens/parrot6.gif',
-    './imagens/parrot7.gif',
-    './imagens/parrot7.gif',
+    '1.gif', 
+    '2.gif', 
+    '3.gif', 
+    '4.gif', 
+    '5.gif', 
+    '6.gif', 
+    '7.gif', 
 ];
 
-// let indice = numero;
-
-function adicionarPassaros(){
-    const novoPassaro = document.querySelector('cards');
-
-    passaros.push(novoPassaro.value);
-    const main = document.querySelector('main');
-
-    main.innerHTML = main.innerHTML + ` 
-    <div data-test="card" class="cards"  onclick="clicarCards(this)">
-
-    <div class="front-face face">
-    <img data-test="face-up-image src= "${novoPassaro.value}"/>
-    </div>
-
-    <div class="back-face face" >
-    <img data-test="face-down-image" src= "./imagens/back.png"/>
-    </div>
-    </div>`;
-
-
-}
 
 function adicionarPassarosNoDOM(passaro){
 
     const main = document.querySelector('main');
-    
-    passaros.sort(comparador);
+
+    for(let i  = 0; i < pegarNCartas; i++){
+        passaroCard[i] = passarosPossiveis [i];
+    }
+
+    passaroCard.sort(comparador);
+
 
     for(let i = 0; i < pegarNCartas; i++){
         let template = ` 
         <div data-test="card" class="cards" onclick="clicarCards(this)" >
 
         <div class="front-face face" >
-        <img data-test="face-up-image" src= "${passaros[i]}"/>
+        <img data-test="face-up-image" src= "/imagens/${passaroCard[i]}.gif"/>
         </div>
 
     
@@ -76,6 +60,7 @@ function adicionarPassarosNoDOM(passaro){
         `;
         
         main.innerHTML = main.innerHTML + template;
+
     }
     
 
@@ -84,22 +69,30 @@ function adicionarPassarosNoDOM(passaro){
 adicionarPassarosNoDOM();
 //criar uma nova carta
 
+
+
 function comparador() {
     return Math.random() - 0.5;  //embaralhar
 
 }
 
 
+
 let firstCard = '';
 let secondCard = '';
 
 function VerificarCartasIguais(){
-    const primeiraCarta = firstCard.getAttribute('img');
-    const segundaCarta = secondCard.getAttribute('img');
+    const primeiraCarta = firstCard.querySelector('img').src;
+    const segundaCarta = secondCard.querySelector('img').src;
 
     if (primeiraCarta === segundaCarta){
-        firstCard.classList.remove('front-face');
-        secondCard.classList.remove('front-face');
+        firstCard.classList.add('front-face');
+        secondCard.classList.add('front-face');
+
+            firstCard = '';
+            secondCard = '';
+
+            
 
     } else {
 
@@ -109,21 +102,19 @@ function VerificarCartasIguais(){
 
             firstCard = '';
             secondCard = '';
-   
-        }, 500);
-        
-        
-    }
 
+            
+
+        }, 500);
+    }
+    finalgame();
 }
 
 
  
 function clicarCards(cartaClicada) {
     //revela carta clicada 
-    if (cartaClicada.parentNode.className.includes('reveal-card')){
-        return;
-    }
+    clique = clique + 1;
 
     if(firstCard === ''){
         cartaClicada.classList.add('reveal-card');
@@ -131,21 +122,24 @@ function clicarCards(cartaClicada) {
     } else if (secondCard === '') {
         cartaClicada.classList.add('reveal-card');
         secondCard = cartaClicada;
+
         
     }
     VerificarCartasIguais();
 
+
 }
 
 
 
-// começo jogo (falta ainda)
-const game = () => { 
+function finalgame(){
+    let cardFinal = document.querySelectorAll('.reveal-card');
+    if (cardFinal.length === pegarNCartas) {
+        setTimeout(() => {
+            alert(`Você ganhou em ${clique} jogadas!`);
+        }, 500);
+        
+    }
 
-
-    
-
-    
 }
 
-game();
