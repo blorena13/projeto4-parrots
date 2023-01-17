@@ -23,13 +23,13 @@ const passaroCard = [];
 
 
 const passaros = [  // cada gif
-    '1.gif', 
-    '2.gif', 
-    '3.gif', 
-    '4.gif', 
-    '5.gif', 
-    '6.gif', 
-    '7.gif', 
+    './imagens/1.gif', 
+    './imagens/2.gif', 
+    './imagens/3.gif', 
+    './imagens/4.gif', 
+    './imagens/5.gif', 
+    './imagens/6.gif', 
+    './imagens/7.gif', 
 ];
 
 
