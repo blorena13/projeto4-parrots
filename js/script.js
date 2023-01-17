@@ -49,7 +49,7 @@ function adicionarPassarosNoDOM(passaro){
         <div data-test="card" class="cards" onclick="clicarCards(this)" >
 
         <div class="front-face face" >
-        <img data-test="face-up-image" src= "/imagens/${passaroCard[i]}.gif"/>
+        <img data-test="face-up-image" src= "./imagens/${passaroCard[i]}.gif"/>
         </div>
 
     
